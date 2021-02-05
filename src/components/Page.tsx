@@ -6,6 +6,8 @@ import Employees from './Employees';
 import { loadEmployees } from '../redux/actions';
 import { getAllEmployees } from '../redux/selectors';
 
+import './Page.less';
+
 const Page = (): JSX.Element => {
 
     const employees = useSelector(getAllEmployees);

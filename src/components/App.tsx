@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import store from '../redux/store';
 
 import Page from './Page';
-import './styles.less';
 
 const App = (): JSX.Element => (
     <Provider store={store}>
