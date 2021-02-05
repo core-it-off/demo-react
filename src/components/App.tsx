@@ -1,11 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
-const App = (): JSX.Element => {
-    return (
-        <div>
-            <h1>Hello person!</h1>
-        </div>
-    );
-};
+import Page from './Page';
+import './styles.less';
+
+const App = (): JSX.Element => (
+    <Provider store={store}>
+        <Page />
+    </Provider>
+);
 
 export default App;
