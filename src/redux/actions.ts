@@ -1,4 +1,5 @@
 import { AnyAction, Dispatch } from 'redux';
+import { batch } from 'react-redux';
 import { apiService } from '../apiService';
 import { IEmployee } from '../types';
 
@@ -26,13 +27,16 @@ export const setEmployeesData = (employees: IEmployee[]): AnyAction => {
  * Загрузить список сотрудников.
  */
 export const loadEmployees = () => (dispatch: Dispatch): Promise<void> => {
-    dispatch(setEmployeesData([]));
-    dispatch(setEmployeesLoadingState(true));
+    batch(() => {
+        dispatch(setEmployeesData([]));
+        dispatch(setEmployeesLoadingState(true));
+    });
 
     return apiService.fetchEmployees().then((res) => {
-        // TODO batch
-        dispatch(setEmployeesData(res));
-        dispatch(setEmployeesLoadingState(false));
+        batch(() => {
+            dispatch(setEmployeesData(res));
+            dispatch(setEmployeesLoadingState(false));
+        });
     });
 }
 
